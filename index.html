@@ -1,71 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Dealership | Home</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>เว็บไซต์ขายรถ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .car-item {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"], input[type="number"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+    </style>
+    <script>
+        // แสดงข้อความต้อนรับเมื่อหน้าโหลด
+        window.onload = function() {
+            alert("ยินดีต้อนรับสู่เว็บไซต์ขายรถของเรา!");
+        };
+
+        // ฟังก์ชันเพิ่มข้อมูลรถ
+        function addCar(event) {
+            event.preventDefault();
+
+            let model = document.getElementById('carModel').value;
+            let price = document.getElementById('carPrice').value;
+            let year = document.getElementById('carYear').value;
+            let color = document.getElementById('carColor').value;
+
+            // เพิ่มข้อมูลรถ
+            let carInfo = `
+                <div class="car-item">
+                    <h4>${model}</h4>
+                    <p>ราคา: ${price} บาท</p>
+                    <p>ปีที่ผลิต: ${year}</p>
+                    <p>สีรถ: ${color}</p>
+                </div>
+            `;
+            
+            // แสดงข้อมูลในส่วนแสดงผล
+            document.getElementById('carList').innerHTML += carInfo;
+
+            // เคลียร์ฟอร์มหลังจากกรอกข้อมูล
+            document.getElementById('carForm').reset();
+        }
+
+        // ฟังก์ชันการค้นหารถ
+        function searchCar() {
+            let searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            let cars = document.getElementsByClassName('car-item');
+
+            for (let i = 0; i < cars.length; i++) {
+                let carText = cars[i].innerText.toLowerCase();
+                if (carText.indexOf(searchTerm) !== -1) {
+                    cars[i].style.display = '';
+                } else {
+                    cars[i].style.display = 'none';
+                }
+            }
+        }
+    </script>
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
-        <h1>Car Dealership</h1>
-        <p>Find your dream car at unbeatable prices!</p>
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#cars">Cars</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
 
-    <!-- Banner Section -->
-    <section class="banner">
-        <h2>Best Deals on Cars</h2>
-    </section>
+<header>
+    <h1>เว็บไซต์ขายรถ</h1>
+</header>
 
-    <!-- Cars Section -->
-    <section class="cars" id="cars">
-        <h2>Available Cars</h2>
-        <div class="car-list">
-            <div class="car-card">
-                <img src="https://www.ananda.co.th/blog/thegenc/wp-content/uploads/2024/04/%E0%B8%94%E0%B8%B5%E0%B9%84%E0%B8%8B%E0%B8%99%E0%B9%8C%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%B1%E0%B8%87%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B9%84%E0%B8%94%E0%B9%89%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD-2024-04-18T232726.445.png" alt="Toyota Corolla">
-                <h3>BYD Atto 3</h3>
-                <p>Reliable sedan for every family.</p>
-                <p class="price">$20,000</p>
-            </div>
-            <div class="car-card">
-                <img src="https://www.ananda.co.th/blog/thegenc/wp-content/uploads/2024/04/%E0%B8%94%E0%B8%B5%E0%B9%84%E0%B8%8B%E0%B8%99%E0%B9%8C%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%B1%E0%B8%87%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B9%84%E0%B8%94%E0%B9%89%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD-2024-04-18T233409.756.png" alt="Honda Civic">
-                <h3>Tesla Model 3
-                </h3>
-                <p>Comfort and efficiency combined.</p>
-                <p class="price">$22,000</p>
-            </div>
-            <div class="car-card">
-                <img src="https://www.ananda.co.th/blog/thegenc/wp-content/uploads/2024/04/%E0%B8%94%E0%B8%B5%E0%B9%84%E0%B8%8B%E0%B8%99%E0%B9%8C%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%B1%E0%B8%87%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B9%84%E0%B8%94%E0%B9%89%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD-2024-04-18T234505.683.png" alt="Ford Mustang">
-                <h3>MINI Cooper 2024</h3>
-                <p>A classic muscle car with modern touches.</p>
-                <p class="price">$35,000</p>
-            </div>
-        </div>
-    </section>
+<div class="container">
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <h2>Contact Us</h2>
-        <form>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-            <button type="submit">Send</button>
+    <!-- ฟอร์มเพิ่มข้อมูลรถ -->
+    <div class="form-container">
+        <h2>เพิ่มข้อมูลรถยนต์</h2>
+        <form id="carForm" onsubmit="addCar(event)">
+            <label for="carModel">รุ่นรถ:</label><br>
+            <input type="text" id="carModel" name="carModel" required><br>
+
+            <label for="carPrice">ราคา (บาท):</label><br>
+            <input type="number" id="carPrice" name="carPrice" required><br>
+
+            <label for="carYear">ปีที่ผลิต:</label><br>
+            <input type="number" id="carYear" name="carYear" required><br>
+
+            <label for="carColor">สีรถ:</label><br>
+            <input type="text" id="carColor" name="carColor" required><br><br>
+
+            <input type="submit" value="เพิ่มข้อมูลรถ">
         </form>
-    </section>
+    </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Car Dealership. All Rights Reserved.</p>
-    </footer>
+    <!-- ฟังก์ชันการค้นหารถยนต์ -->
+    <h2>ค้นหารถยนต์</h2>
+    <input type="text" id="searchInput" onkeyup="searchCar()" placeholder="ค้นหาตามรุ่นหรือสีของรถ">
+
+    <!-- แสดงข้อมูลรถที่เพิ่มเข้าไป -->
+    <h2>รายการรถยนต์ที่มีอยู่</h2>
+    <div id="carList"></div>
+
+</div>
+
 </body>
 </html>
